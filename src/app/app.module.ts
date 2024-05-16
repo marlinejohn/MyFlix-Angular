@@ -13,17 +13,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
+import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserRegistrationFormComponent
+    UserRegistrationFormComponent,
+    UserLoginFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     MatInputModule,
     MatButtonModule,
@@ -33,9 +36,7 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
     MatSnackBarModule,
     FormsModule,    
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
