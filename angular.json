@@ -27,6 +27,7 @@
             "outputPath": "dist/my-fix-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "baseHref": "/MyFlix-Angular/",
             "polyfills": [
               "zone.js"
             ],
