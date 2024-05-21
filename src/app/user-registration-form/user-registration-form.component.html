@@ -5,7 +5,7 @@
       <mat-card-title>Sign Up!</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form>
+      <form #signUpForm="ngForm">
         <mat-form-field>
           <input
             matInput
@@ -14,7 +14,11 @@
             type="text"
             name="Username"
             required
+            #username="ngModel"
           >
+          <mat-error *ngIf="username.invalid && (username.dirty || username.touched)">
+            Username is required.
+          </mat-error>
           </mat-form-field>
           <mat-form-field>
           <input
@@ -24,7 +28,11 @@
             placeholder="Password"
             name="Password"
             required
-          >
+            #password="ngModel"
+            >
+            <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+              Password is required.
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input
@@ -34,7 +42,11 @@
             placeholder="Email"
             name="Email"
             required
-          >
+            #email="ngModel"
+            >
+            <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+             Enter a valid email.
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input
@@ -52,6 +64,7 @@
           mat-raised-button
           (click)="registerUser()"
           color="primary"
+          [disabled]="signUpForm.invalid"
         >
           Sign Up
         </button>

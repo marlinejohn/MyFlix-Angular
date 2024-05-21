@@ -1,0 +1,59 @@
+<div class="main">
+  <!-- Navbar component -->
+  <app-navbar></app-navbar>
+  <div class="user-profile">
+    <h1>User Profile</h1>
+    <div class="user-container">
+      <h2>User Info</h2>
+      <div class="user-info-display">
+        <label>Name : </label>
+        <span>{{ userData.username }}</span>
+      </div>
+      <div class="user-info-display">
+        <label>Birthday: </label>
+        <span>{{ userData.birthDate | date : "longDate" }}</span>
+      </div>
+
+      <div class="user-info-display">
+        <label>Email: </label>
+        <span>{{ userData.email }}</span>
+      </div>
+
+      <div class="update-user-info">
+        <h2>Update User Info</h2>
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Name</mat-label>
+            <input shouldLabelFloat="true" matInput type="text" [(ngModel)]="formUserData.username" name="name"
+              placeholder="Name" />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Birthday</mat-label>
+            <input matInput type="date" [(ngModel)]="formUserData.birthDate" name="birthday" placeholder="Birthday" />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="formUserData.email" name="email" placeholder="Email" />
+          </mat-form-field>
+
+          <div class="button-container">
+            <button mat-raised-button type="submit" color="primary" (click)="updateUser()">Update</button>
+            <button mat-raised-button color="warn" (click)="deleteUser()">Delete User</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="content" *ngIf="user.favoriteMovies.length > 0" >
+      <h2>Favorite Movies</h2>
+      <div class="favorite-movies-container">
+        <!-- Display favorite movies -->
+        <div>
+          <app-movie-card [isFromFav]="true"></app-movie-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,30 @@
-<!doctype html>
-<html lang="en">
-<mat-card *ngFor= "let movie of movies; let i=index">
-    <mat-dialog-content>
-        <mat-card-title>{{movie.title}}</mat-card-title>
-        <mat-card-subtitle><img src="{{movie.imageUrl}}"/></mat-card-subtitle>
-    </mat-dialog-content>
-</mat-card>
-</html>
+<app-navbar  *ngIf="!isFromFav"></app-navbar>
+<div class="movie-container">
+    <mat-card *ngFor="let movie of movies">
+        <mat-dialog-content>
+            <div class="movie-card">
+                <h2>{{ movie.title }}</h2>
+                <img [src]="movie.imageUrl" alt="Movie Poster"  height="450">
+                <div class="button-container">
+                    <button mat-raised-button class="custom-button" (click)="openGenreDialog(movie.genre.name)"
+                        style="margin-right: 10px;">
+                        Genre</button>
+                    <button mat-raised-button class="custom-button" (click)="openDirectorDialog(movie.director.name)"
+                        style="margin-right: 10px;">
+                        Director</button>
+                    <button mat-raised-button class="custom-button"
+                        (click)="openSynopsisDialog(movie.title, movie.description)" style="margin-right: 10px;">
+                        Synopsis</button>
+                    <button mat-icon-button (click)="toggleFav(movie)" class="mat-icon-button">
+                        <mat-icon *ngIf="isFav(movie)" style="transform: scale(1.5)">
+                            favorite
+                        </mat-icon>
+                        <mat-icon *ngIf="!isFav(movie)" style="transform: scale(1.5)">
+                            favorite_border
+                        </mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-dialog-content>
+    </mat-card>
+</div>
