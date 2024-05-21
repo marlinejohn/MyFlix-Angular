@@ -22,14 +22,14 @@
 }
 
 mat-card {
-    padding: 20px;
+    padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
     img {
-        width: 300px;
-        object-fit: cover; /* Maintain aspect ratio and cover the container */
+        width: 100%;
+        max-width: 300px;
+        object-fit: cover;
         border-radius: 10px;
-        justify-content: center;
-    }
+      }
 }
 
 .button-container {
@@ -37,16 +37,22 @@ mat-card {
     align-items: center;
     gap: 10px;
     margin-top: 10px; 
+    margin-left: -17px;
 }
 
 
 // Adjust styles for smaller screens
 @media screen and (max-width: 768px) {
     .movie-container {
-        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); 
+      flex-direction: column;
+      align-items: center;
     }
-
+    mat-card{
+        width: 100%;
+    }
+  
     mat-dialog-content {
-        max-width: 200px;
+      max-width: 200px;
     }
-}
+  }
+
