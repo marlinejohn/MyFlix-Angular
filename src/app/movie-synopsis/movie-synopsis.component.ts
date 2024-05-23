@@ -7,6 +7,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./movie-synopsis.component.scss']
 })
 export class MovieSynopsisComponent implements OnInit{
+   /**
+   * Creates an instance of MovieSynopsisComponent.
+   * @param dialogRef - Angular Material dialog reference.
+   * @param data - Data injected into the dialog.
+   *               Contains movie title and description.
+   */
   constructor(
     public dialogRef: MatDialogRef<MovieSynopsisComponent>,
     @Inject(MAT_DIALOG_DATA)
@@ -16,9 +22,15 @@ export class MovieSynopsisComponent implements OnInit{
     }
   ) { }
 
+  /**
+   * Lifecycle hook that is called after data-bound properties of a directive are initialized.
+   */
   ngOnInit(): void {
   }
 
+  /**
+   * Closes the dialog.
+   */
   closeDialog(): void {
     this.dialogRef.close();
   }

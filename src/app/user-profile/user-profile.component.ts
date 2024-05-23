@@ -27,6 +27,13 @@ export class UserProfileComponent implements OnInit {
   favoriteMovies: any[] = [];
   _id: any[] = [];
 
+   /**
+   * Creates an instance of UserProfileComponent.
+   * @param fetchApiData - API data fetching service.
+   * @param dialog - Angular Material dialog service.
+   * @param snackBar - Angular Material snackbar service.
+   * @param router - Angular Router service.
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -34,9 +41,16 @@ export class UserProfileComponent implements OnInit {
     public router: Router
   ) {}
 
+   /**
+   * Lifecycle hook that is called after data-bound properties of a directive are initialized.
+   */
   ngOnInit(): void {
     this.getProfile();
   }
+  /**
+   * Fetches the user's profile information and favorite movies.
+   * @returns void
+   */
   public getProfile(): void {
     this.fetchApiData.getUser().subscribe((result: any) => {
       console.log(result);
@@ -61,6 +75,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+   /**
+   * Updates the user's profile information.
+   * @returns Promise<void>
+   */
   async updateUser(): Promise<void> {
     let formData = this.formUserData;
     formData.birthDate = this.user.birthDate.slice(0, 10)
@@ -83,6 +101,10 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+   /**
+   * Deletes the user's account after confirmation.
+   * @returns Promise<void>
+   */
   async deleteUser(): Promise<void> {
     console.log('deleteUser function called:', this.userData.email);
     if (confirm('Do you want to delete your account permanently?')) {

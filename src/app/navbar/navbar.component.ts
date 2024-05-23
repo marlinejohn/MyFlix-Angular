@@ -8,28 +8,47 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+   /**
+   * Stores the username of the logged-in user.
+   */
   public username: string = "";
 
+  /**
+   * Creates an instance of NavbarComponent.
+   * @param snackBar - Angular Material snackbar service.
+   * @param router - Angular Router service.
+   */
   constructor(
     public snackBar: MatSnackBar,
     public router: Router
   ) { }
 
+  /**
+   * Lifecycle hook that is called after data-bound properties of a directive are initialized.
+   * Retrieves the username from local storage and assigns it to the `username` property.
+   */
   ngOnInit(): void {
     this.username = JSON.parse(localStorage.getItem("user")!).username;
   }
 
-  // Function to navigate to the movies page.
+    /**
+   * Navigates to the movies page.
+   */
   public openMovies(): void {
     this.router.navigate(['movies']);
   }
 
-  // Function to navigate to the profile page.
+   /**
+   * Navigates to the profile page.
+   */
   public openProfile(): void {
     this.router.navigate(['profile']);
   }
 
-  // Function to log out the user.
+   /**
+   * Logs out the user by clearing the token and user data from local storage.
+   * Displays a logout confirmation message and navigates to the welcome page.
+   */
   public logoutUser(): void {
     localStorage.setItem('token', '');
     localStorage.setItem('user', '');
