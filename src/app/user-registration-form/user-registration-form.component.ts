@@ -10,6 +10,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * The UserRegistrationFormComponent is used for user registration.
+ */
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
@@ -17,8 +20,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class UserRegistrationFormComponent implements OnInit {
+    /**
+   * Holds the user's registration data.
+   */
   @Input() userData = { username: '', password: '', email: '', birthDate: '' };
 
+   /**
+   * Creates an instance of UserRegistrationFormComponent.
+   * @param fetchApiData - Service to interact with the API.
+   * @param dialogRef - Reference to the dialog opened.
+   * @param snackBar - Service to show snack bar notifications.
+   * @param router - Router to navigate after registration.
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
@@ -26,9 +39,14 @@ export class UserRegistrationFormComponent implements OnInit {
     private router: Router
   ) {}
 
+  /**
+   * Initializes the component.
+   */
   ngOnInit(): void {}
 
-  // This is the function responsible for sending the form inputs to the backend
+ /**
+   * Registers a new user by sending userData to the backend.
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe(
       (result) => {
@@ -53,6 +71,10 @@ export class UserRegistrationFormComponent implements OnInit {
     );
   }
 
+  /**
+   * Logs in a user after successful registration.
+   * @param loginUserData - The user's login data.
+   */
   loginUser(loginUserData: any ): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (result) => {
